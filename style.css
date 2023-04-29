@@ -28,3 +28,22 @@
     cursor: pointer;
     margin: 5px;
 }
+
+.btn-animated {
+    animation: keys_animation 0.5s linear;
+}
+
+@keyframes keys_animation {
+    0% {
+        background-color: #fff;
+        color: #000;
+    }
+    50% {
+        background-color: #000;
+        color: #fff;
+    }
+    100% {
+        background-color: #fff;
+        color: #000;
+    }
+}
