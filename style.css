@@ -30,7 +30,7 @@
 }
 
 .btn-animated {
-    animation: keys_animation 0.5s linear;
+    animation: keys_animation 0.1s linear;
 }
 
 @keyframes keys_animation {
@@ -38,12 +38,17 @@
         background-color: #fff;
         color: #000;
     }
-    50% {
+    100% {
         background-color: #000;
         color: #fff;
     }
-    100% {
-        background-color: #fff;
-        color: #000;
-    }
+}
+
+.keys.active {
+    background-color: #333;
+    color: #fff;
+}
+
+.keys.remove {
+    animation: keys_animation 0.5s forwards ;
 }
