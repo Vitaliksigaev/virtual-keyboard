@@ -19,7 +19,6 @@ body.append(keyboard);
 
 
 function clearKeyBoards () {
-    let test = document.querySelector('.keyboard-container');
     keyboard.innerHTML = '';
 }
 
@@ -44,7 +43,7 @@ function createKeyboard(keyboardLanguage) {
         row.className = 'row';
         keyboard.append(row)
     
-        for (let j = 0; j < keyboardLanguage[i].length; j++) {
+        for (let j = 0; j < keyboardLanguage[i].length; j += 1) {
             let btn = document.createElement('div');
             btn.className = 'keys';
             btn.innerText = keyboardLanguage[i][j];
@@ -60,20 +59,18 @@ function createKeyboard(keyboardLanguage) {
             }
             row.append(btn)
         }
-    };
+    }
 
     let keys = document.querySelectorAll('.keys');
     let space = document.querySelector('.keys_space');
-    let ctrl = document.querySelector('.keys_control');
 
     document.addEventListener('keydown', function(e){
-        let inputValue = document.querySelector('input');
 
         for( let i = 0; i < keys.length; i++) {
             if(e.key == keys[i].getAttribute('keyname') || e.key == keys[i].getAttribute('lowerCaseName')) {
                 keys[i].classList.add('active');
             }
-            if(e.code == 'Space') {
+            if(e.code === 'Space') {
                 space.classList.add('active');
             }
         }
