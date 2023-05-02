@@ -78,6 +78,17 @@ function createKeyboard(keyboardLanguage) {
   const keys = document.querySelectorAll('.keys');
   const space = document.querySelector('.keys_space');
 
+  const checkKeyboard = function checkKeyboard() {
+    const check = document.querySelectorAll('.keys');
+    if (check[37].getAttribute('keyname') === 'L' || check[37].getAttribute('keyname') === 'l') {
+      clearKeyBoards();
+      createKeyboard(keyboardKeysRU);
+    } else {
+      clearKeyBoards();
+      createKeyboard(keyboardKeysEN);
+    }
+  };
+
   document.addEventListener('keydown', (e) => {
     for (let i = 0; i < keys.length; i += 1) {
       if (e.key === keys[i].getAttribute('keyname') || e.key === keys[i].getAttribute('lowerCaseName')) {
@@ -86,7 +97,16 @@ function createKeyboard(keyboardLanguage) {
       if (e.code === 'Space') {
         space.classList.add('active');
       }
-      console.log(e.code);
+      if (e.code === 'AltLeft') {
+        const control = document.querySelector('.keys_control');
+        if (control.classList.contains('active')) {
+          const controlAlt = document.querySelector('.keys_alt');
+          // console.log('альт нажат и есть актив.')
+          controlAlt.classList.add('active');
+          checkKeyboard();
+        }
+      }
+      // console.log(e.code); // ShiftLeft
     }
   });
 
@@ -101,41 +121,42 @@ function createKeyboard(keyboardLanguage) {
     }
   });
 }
+
+// function checkKeyboard() {
+//   const check = document.querySelectorAll('.keys');
+//   if (check[37].getAttribute('keyname') === 'L' || check[37].getAttribute('keyname') === 'l') {
+//     clearKeyBoards();
+//     createKeyboard(keyboardKeysRU);
+//   } else {
+//     clearKeyBoards();
+//     createKeyboard(keyboardKeysEN);
+//   }
+// }
+
 createKeyboard(keyboardKeysEN);
 
-function checkKeyboard() {
-  const check = document.querySelectorAll('.keys');
-  if (check[37].getAttribute('keyname') === 'L' || check[37].getAttribute('keyname') === 'l') {
-    clearKeyBoards();
-    createKeyboard(keyboardKeysRU);
-  } else {
-    clearKeyBoards();
-    createKeyboard(keyboardKeysEN);
-  }
-}
+// function runOnKeys(func, ...codes) {
+//   const pressed = new Set();
 
-function runOnKeys(func, ...codes) {
-  const pressed = new Set();
+//   document.addEventListener('keydown', (event) => {
+//     pressed.add(event.code);
+//     for (const code of codes) {
+//       if (!pressed.has(code)) {
+//         return
+//       }
+//     }
 
-  document.addEventListener('keydown', (event) => {
-    pressed.add(event.code);
-    for (const code of codes) {
-      if (!pressed.has(code)) {
-        return
-      }
-    }
+//     pressed.clear();
+//     func();
+//   });
 
-    pressed.clear();
-    func();
-  });
+//   document.addEventListener('keyup', (event) => {
+//     pressed.delete(event.code);
+//   });
+// }
 
-  document.addEventListener('keyup', (event) => {
-    pressed.delete(event.code);
-  });
-}
-
-runOnKeys(
-  () => checkKeyboard(),
-  'AltLeft',
-  'ControlLeft',
-);
+// runOnKeys(
+//   () => checkKeyboard(),
+//   'AltLeft',
+//   'ControlLeft',
+// );
