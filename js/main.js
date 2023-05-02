@@ -6,10 +6,15 @@ info.className = 'info-container'
 info.innerHTML= "<p> Переключение языков СТРЛ + АЛЬТ - клавиатура меняется.</p> <p>На инпуте стоит автофокус</p> <p>Делалась клава на маке.</p>";
 body.append(info);
 
-let textarea = document.createElement('div');
-textarea.className = 'textarea';
-textarea.innerHTML = '<input class="text-input" type="text" autofocus ">';
-body.append(textarea);
+// let textarea = document.createElement('div');
+// textarea.className = 'textarea';
+// textarea.innerHTML = '<input class="text-input" type="text" autofocus ">';
+// body.append(textarea);
+
+let textarea2 = document.createElement('div');
+textarea2.className = 'textarea2';
+textarea2.innerHTML = '<textarea rows="15" cols="100" name="text" autofocus></textarea>';
+body.append(textarea2);
 
 
 
@@ -128,7 +133,7 @@ function runOnKeys(func, ...codes) {
 
 
 function changeInputValue(btn) {
-    let inputValue = document.querySelector('input');
+    let inputValue = document.querySelector('textarea'); // textarea input
     if(btn.innerText.length == 1) {
         inputValue.value += btn.innerText;
         console.log(inputValue.value);
@@ -137,5 +142,4 @@ function changeInputValue(btn) {
     if(btn.innerText == 'Backspace') {
         inputValue.value = inputValue.value.slice(0, -1);
     }
-
 }

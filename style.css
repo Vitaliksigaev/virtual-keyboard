@@ -78,3 +78,8 @@
 .keys.active-click {
     animation: keys_animation-click 0.3s forwards ;
 }
+
+.textarea2 {
+    display: flex;
+    justify-content: center;
+}
