@@ -51,6 +51,9 @@ function changeInputValue(btn) {
   }
 }
 
+console.log(keyboardKeysEN);
+console.log(JSON.parse(localStorage.leng));
+
 function createKeyboard(keyboardLanguage) {
   for (let i = 0; i < keyboardLanguage.length; i += 1) {
     const row = document.createElement('div');
@@ -74,7 +77,9 @@ function createKeyboard(keyboardLanguage) {
       row.append(btn);
     }
   }
+  localStorage.leng = JSON.stringify(keyboardLanguage);
 
+  console.log(localStorage.leng);
   const keys = document.querySelectorAll('.keys');
   const space = document.querySelector('.keys_space');
 
@@ -133,8 +138,14 @@ function createKeyboard(keyboardLanguage) {
 //   }
 // }
 
-createKeyboard(keyboardKeysEN);
-
+if (localStorage.leng) {
+  console.log(localStorage.leng);
+  console.log('Проверка');
+  clearKeyBoards();
+  createKeyboard(JSON.parse(localStorage.leng));
+} else {
+  createKeyboard(keyboardKeysEN);
+}
 // function runOnKeys(func, ...codes) {
 //   const pressed = new Set();
 
